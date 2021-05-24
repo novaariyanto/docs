@@ -1,36 +1,36 @@
-# Whatsvi - Typescript/Javascript WhatsApp Web API
+# Whatsva - Typescript/Javascript WhatsApp Web API
  
- Whatsvi does not require Selenium or any other browser to be interface with WhatsApp Web, it does so directly using a **WebSocket**. Not running Selenium or Chromimum saves you like **half a gig** of ram :/ 
+ Whatsva does not require Selenium or any other browser to be interface with WhatsApp Web, it does so directly using a **WebSocket**. Not running Selenium or Chromimum saves you like **half a gig** of ram :/ 
 
 
 ## Example
 Do check out & run [example.ts](Example/example.ts) to see example usage of the library.
 The script covers most common use cases.
 To run the example script, download or clone the repo and then type the following in terminal:
-1. ``` cd path/to/Whatsvi ```
+1. ``` cd path/to/Whatsva ```
 2. ``` npm install ```
 3. ``` npm run example ```
 
 ## Install
 Create and cd to your NPM project directory and then in terminal, write: 
-1. stable: `npm install whatsvi`
+1. stable: `npm install Whatsva`
 
 
 
 Then import in your code using:
 ``` ts 
-import { WAConnection } from 'whatsvi'
+import { WAConnection } from 'Whatsva'
 ```
 
 ## Unit Tests
-Whatsvi also comes with a unit test suite. Simply cd into the Whatsvi directory & run `npm test`.
+Whatsva also comes with a unit test suite. Simply cd into the Whatsva directory & run `npm test`.
 
 You will require a phone with WhatsApp to test, and a second WhatsApp number to send messages to.
 Set the phone number you can randomly send messages to in a `.env` file with `TEST_JID=1234@s.whatsapp.net` 
 
 ## Connecting
 ``` ts
-import { WAConnection } from 'whatsvi'
+import { WAConnection } from 'Whatsva'
 
 async function connectToWhatsApp () {
     const conn = new WAConnection() 
@@ -75,7 +75,7 @@ Do note, the `conn.chats` object is a [KeyedDB](https://github.com/adiwajshing/k
 You can configure the connection via the `connectOptions` property. You can even specify an HTTPS proxy. For example:
 
 ``` ts
-import { WAConnection, ProxyAgent } from 'whatsvi'
+import { WAConnection, ProxyAgent } from 'Whatsva'
 
 const conn = new WAConnecion ()
 conn.connectOptions.agent = ProxyAgent ('http://some-host:1234')
@@ -162,10 +162,10 @@ conn.regenerateQRIntervalMs = 20000 // QR regen every 20 seconds
 
 ## Handling Events
 
-Whatsvi now uses the EventEmitter syntax for events. 
+Whatsva now uses the EventEmitter syntax for events. 
 They're all nicely typed up, so you shouldn't have any issues with an Intellisense editor like VS Code.
 
-Also, these events are fired regardless of whether they are initiated by the Whatsvi client or are relayed from your phone.
+Also, these events are fired regardless of whether they are initiated by the Whatsva client or are relayed from your phone.
 
 ``` ts
 /** when the connection has opened successfully */
@@ -210,7 +210,7 @@ on (event: 'received-pong', listener: () => void): this
 
 Send like, all types of messages with a single function:
 ``` ts
-import { MessageType, MessageOptions, Mimetype } from 'whatsvi'
+import { MessageType, MessageOptions, Mimetype } from 'Whatsva'
 
 const id = 'abcd@s.whatsapp.net' // the WhatsApp ID 
 // send a simple text!
@@ -253,7 +253,7 @@ To note:
                                     Do not enter this field if you want to automatically generate a thumb
                                 */
         mimetype: Mimetype.pdf, /* (for media messages) specify the type of media (optional for all media types except documents),
-                                    import {Mimetype} from 'whatsvi'
+                                    import {Mimetype} from 'Whatsva'
                                 */
         filename: 'somefile.pdf', // (for media messages) file name for the media
         /* will send audio messages as voice notes, if set to true */
@@ -288,7 +288,7 @@ The message ID is the unique identifier of the message that you are marking as r
 ## Update Presence
 
 ``` ts
-import { Presence } from 'whatsvi'
+import { Presence } from 'Whatsva'
 await conn.updatePresence(id, Presence.available) 
 
 ```
@@ -308,7 +308,7 @@ The presence expires after about 10 seconds.
 
 If you want to save the media you received
 ``` ts
-import { MessageType } from 'whatsvi'
+import { MessageType } from 'Whatsva'
 conn.on ('message-new', async m => {
     if (!m.message) return // if there is no text or media message
     const messageType = Object.keys (m.message)[0]// get what type of message it is -- text, image, video
@@ -460,7 +460,7 @@ Of course, replace ``` xyz ``` with an actual ID.
     ```
 - To change group settings
     ``` ts
-    import { GroupSettingChange } from 'whatsvi'
+    import { GroupSettingChange } from 'Whatsva'
     // only allow admins to send messages
     await conn.groupSettingChange ("abcd-xyz@g.us", GroupSettingChange.messageSend, true)
     // allow everyone to modify the group's settings -- like display picture etc.
@@ -498,7 +498,7 @@ Of course, replace ``` xyz ``` with an actual ID.
     ```
 
 ## Writing Custom Functionality
-Whatsvi is written, keeping in mind, that you may require other custom functionality. Hence, instead of having to fork the project & re-write the internals, you can simply write extensions in your own code.
+Whatsva is written, keeping in mind, that you may require other custom functionality. Hence, instead of having to fork the project & re-write the internals, you can simply write extensions in your own code.
 
 First, enable the logging of unhandled messages from WhatsApp by setting
 ``` ts
