@@ -11,9 +11,6 @@ To run the example script, download or clone the repo and then type the followin
 2. ``` npm install ```
 3. ``` npm run example ```
 
-## Install
-Create and cd to your NPM project directory and then in terminal, write: 
-1. stable: `npm install Whatsva`
 
 
 
@@ -546,9 +543,3 @@ This will enable you to see all sorts of messages WhatsApp sends in the console.
     ```
     This callback will be fired any time a message is received matching the following criteria:
     ``` message [0] === "Conn" && message [1].pushname ```
-
-A little more testing will reveal that almost all WhatsApp messages are in the format illustrated above. 
-Note: except for the first parameter (in the above cases, ```"action"``` or ```"Conn"```), all the other parameters are optional.
-
-### Note
- This library was originally a project for **CS-2362 at Ashoka University** and is in no way affiliated with WhatsApp. Use at your own discretion. Do not spam people with this.
